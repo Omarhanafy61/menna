@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valentine</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial;
+    overflow:hidden;
+    background:linear-gradient(-45deg,#ff9ac2,#ffd1e6,#ff7eb3,#ffc2d1);
+    background-size:400% 400%;
+    animation:bg 8s infinite alternate;
+}
+
+@keyframes bg{
+    0%{background-position:0% 50%;}
+    100%{background-position:100% 50%;}
+}
+
+h1{
+    color:white;
+    text-shadow:2px 2px 5px rgba(0,0,0,0.2);
+}
+
+button{
+    padding:12px 22px;
+    font-size:18px;
+    margin:10px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+}
+
+#yes{
+    background:#ff2f75;
+    color:white;
+}
+
+#no{
+    background:#999;
+    color:white;
+    position:absolute;
+}
+
+.heart{
+    position:absolute;
+    font-size:30px;
+    animation:float 6s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(0);}
+    100%{transform:translateY(-800px);}
+}
+</style>
+</head>
+
+<body>
+
+<h1 id="text">Will you be my Valentine? ❤️</h1>
+
+<button id="yes">Yes</button>
+<button id="no">No</button>
+
+<script>
+let yesSize = 18;
+let no = document.getElementById("no");
+
+document.getElementById("no").onclick = function(){
+    yesSize += 8;
+    document.getElementById("yes").style.fontSize = yesSize + "px";
+
+    let x = Math.random() * (window.innerWidth - 100);
+    let y = Math.random() * (window.innerHeight - 50);
+    no.style.left = x + "px";
+    no.style.top = y + "px";
+};
+
+document.getElementById("yes").onclick = function(){
+    document.getElementById("text").innerHTML =
+        "I love you ❤️ Happy Valentine";
+
+    setInterval(function(){
+        let heart = document.createElement("div");
+        heart.className="heart";
+        heart.innerHTML="❤️";
+        heart.style.left=Math.random()*100+"%";
+        heart.style.bottom="0px";
+        document.body.appendChild(heart);
+        setTimeout(()=>heart.remove(),6000);
+    },200);
+};
+</script>
+
+</body>
+</html>
+
+
+
+
